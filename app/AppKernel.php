@@ -39,6 +39,9 @@ class AppKernel extends Kernel
                 $bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
                 $bundles[] = new Symfony\Bundle\MakerBundle\MakerBundle();
 
+
+
+
             }
         }
 
