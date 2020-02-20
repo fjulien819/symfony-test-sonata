@@ -17,6 +17,8 @@ final class BlogPostAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        //vue form
+
         $formMapper
             ->tab('Post')//Onglet
                 ->with('Content', ['class' => 'col-md-9'])// groupe de contenu
@@ -44,12 +46,23 @@ final class BlogPostAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('title');
+        //vue list
+
+        $datagridMapper->add('title')
+        ->add('category', null, [], EntityType::class, [
+        'class' => Category::class,
+        'choice_label' => 'name',
+    ]);
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('title');
+        //vue list
+
+        $listMapper->addIdentifier('title') // Champ qui contient un lien vers la page d'édition
+        ->add('category.name')
+        ->add('draft')
+        ;
     }
 
     public function toString($object)
