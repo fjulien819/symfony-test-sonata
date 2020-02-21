@@ -14,6 +14,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class BlogPostAdmin extends AbstractAdmin
 {
@@ -100,14 +101,32 @@ final class BlogPostAdmin extends AbstractAdmin
         ]
     ])
 
-
     ;
+    }
+
+    // Fields to be shown on show action
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        //vue show
+
+        $showMapper
+            ->add('id')
+            ->add('title')
+            ->add('body')
+            ->add('privateNotes', null, [
+                'role' => 'ROLE_ADMIN_MODERATOR'
+            ])
+        ;
+
+        dump($showMapper); die();
     }
 
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection
-            ->add('testLink', $this->getRouterIdParameter().'/test');
+            ->add('testLink', $this->getRouterIdParameter().'/test')
+
+        ;
     }
 
     public function toString($object)
@@ -116,4 +135,6 @@ final class BlogPostAdmin extends AbstractAdmin
             ? $object->getTitle()
             : 'Blog Post'; // shown in the breadcrumb on the create view
     }
+
+
 }

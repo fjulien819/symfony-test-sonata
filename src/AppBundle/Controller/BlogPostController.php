@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use Sonata\AdminBundle\Controller\CRUDController;
+use Sonata\BlockBundle\Exception\BlockNotFoundException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +18,6 @@ class BlogPostController extends CRUDController
         dump($id);
       dump('ok'); die();
 */
-
 
         $this->addFlash('sonata_flash_success', 'Test effectué avec succès');
         return new RedirectResponse($this->admin->generateUrl('list'));
@@ -42,5 +42,13 @@ class BlogPostController extends CRUDController
         return new RedirectResponse($this->admin->generateUrl('list'));
     */
 
-        }
+    }
+
+    /*
+    public function preList($request)
+    {
+        dump('prelist');die();
+    }
+    */
+
 }
