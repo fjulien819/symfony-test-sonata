@@ -70,9 +70,100 @@ sensio_framework_extra:
    router:
         annotations: false
 
+
+########## SONATA
+
 sonata_block:
         blocks:
             # enable the SonataAdminBundle block
-            sonata.admin.block.admin_list :
-                contexts : [ admin ]
+            sonata.admin.block.admin_list:
+                contexts: [ admin ]
 
+sonata_admin:
+    dashboard:
+        blocks:
+                -
+                    position : left
+                    type : sonata.admin.block.admin_list
+                -
+                    position : right
+                    type : sonata.block.service.text
+                    settings :
+                        content : >
+                            <h2>Welcome to the Sonata Admin</h2>
+                            <p>This is a <code>sonata.block.service.text</code> from the Block
+                            Bundle, you can create and add new block in these area by configuring
+                            the <code>sonata_admin</code> section.</p> <br/> For instance, here
+                            a RSS feed parser (<code>sonata.block.service.rss</code>):
+                -
+                    position : right
+                    type : sonata.block.service.rss
+                    roles : [ POST_READER ]
+                    settings :
+                        title : Sonata Project's Feeds
+                        url : https://sonata-project.org/blog/archive.rss
+
+
+                -
+                    class :    col-lg-3 col-xs-6          # twitter bootstrap responsive code
+                    position : top                        # zone in the dashboard
+                    type :     sonata.admin.block.stats   # block id
+                    settings :
+                        code :  admin.category    # admin code - service id
+                        icon :  fa-archive                    # font awesome icon
+                        text :  app.category.stats            # static text or translation message
+                        color : bg-yellow                 # colors : bg-green, bg-red and bg-aqua
+                        filters :                         # filter values
+                            edited : {  value : 1 }
+
+                -
+                     class :    col-lg-3 col-xs-6          # twitter bootstrap responsive code
+                     position : top                        # zone in the dashboard
+                     type :     sonata.admin.block.stats   # block id
+                     settings :
+                         code :  admin.blog_post   # admin code - service id
+                         icon :  fa-archive               # font awesome icon
+                         text :  app.blog_post.stats           # static text or translation message
+                         color : bg-green               # colors : bg-green, bg-red and bg-aqua
+                         filters :                         # filter values
+                             edited : {  value : 1 }
+
+
+
+
+    templates:
+            layout:                     '@SonataAdmin/standard_layout.html.twig'
+            ajax:                       '@SonataAdmin/ajax_layout.html.twig'
+            list:                       '@SonataAdmin/CRUD/list.html.twig'
+            show:                       '@SonataAdmin/CRUD/show.html.twig'
+            show_compare:               '@SonataAdmin/CRUD/show_compare.html.twig'
+            edit:                       '@SonataAdmin/CRUD/edit.html.twig'
+            history:                    '@SonataAdmin/CRUD/history.html.twig'
+            preview:                    '@SonataAdmin/CRUD/preview.html.twig'
+            delete:                     '@SonataAdmin/CRUD/delete.html.twig'
+            batch:                      '@SonataAdmin/CRUD/list__batch.html.twig'
+            acl:                        '@SonataAdmin/CRUD/acl.html.twig'
+            action:                     '@SonataAdmin/CRUD/action.html.twig'
+            select:                     '@SonataAdmin/CRUD/list__select.html.twig'
+            filter:                     '@SonataAdmin/Form/filter_admin_fields.html.twig'
+            #dashboard:                  'test.html.twig'
+            search:                     '@SonataAdmin/Core/search.html.twig'
+            batch_confirmation:         '@SonataAdmin/CRUD/batch_confirmation.html.twig'
+            inner_list_row:             '@SonataAdmin/CRUD/list_inner_row.html.twig'
+            base_list_field:            '@SonataAdmin/CRUD/base_list_field.html.twig'
+            list_block:                 '@SonataAdmin/Block/block_admin_list.html.twig'
+            user_block:                 '@SonataAdmin/Core/user_block.html.twig'
+            add_block:                  '@SonataAdmin/Core/add_block.html.twig'
+            pager_links:                '@SonataAdmin/Pager/links.html.twig'
+            pager_results:              '@SonataAdmin/Pager/results.html.twig'
+            tab_menu_template:          '@SonataAdmin/Core/tab_menu_template.html.twig'
+            history_revision_timestamp: '@SonataAdmin/CRUD/history_revision_timestamp.html.twig'
+            short_object_description:   '@SonataAdmin/Helper/short-object-description.html.twig'
+            search_result_block:        '@SonataAdmin/Block/block_search_result.html.twig'
+            action_create:              '@SonataAdmin/CRUD/dashboard__action_create.html.twig'
+            button_acl:                 '@SonataAdmin/Button/acl_button.html.twig'
+            button_create:              '@SonataAdmin/Button/create_button.html.twig'
+            button_edit:                '@SonataAdmin/Button/edit_button.html.twig'
+            button_history:             '@SonataAdmin/Button/history_button.html.twig'
+            button_list:                '@SonataAdmin/Button/list_button.html.twig'
+            button_show:                '@SonataAdmin/Button/show_button.html.twig'

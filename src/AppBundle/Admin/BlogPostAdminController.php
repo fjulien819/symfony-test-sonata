@@ -136,5 +136,28 @@ final class BlogPostAdmin extends AbstractAdmin
             : 'Blog Post'; // shown in the breadcrumb on the create view
     }
 
+    public function getDashboardActions()
+    {
+        $actions = parent::getDashboardActions();
+
+        dump($actions);
+
+        // add action dashboard block
+        $actions['testLink'] = [
+            'label'              => 'testAction',
+            'url'                => $this->generateUrl('testLink', ["id" => 2]),
+            'icon'               => 'import',
+            'translation_domain' => 'SonataAdminBundle', // optional
+            'template'           => '@SonataAdmin/CRUD/dashboard__action.html.twig', // optional
+        ];
+
+        // remove action dashboard block
+        unset($actions['list']);
+
+
+        return $actions;
+    }
+
+
 
 }

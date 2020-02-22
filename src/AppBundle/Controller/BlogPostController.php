@@ -12,6 +12,7 @@ class BlogPostController extends CRUDController
 {
     public function testLinkAction($id)
     {
+
         /*
         dump($this->admin->getSubject());
         dump($this->admin);
