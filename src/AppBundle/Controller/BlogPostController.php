@@ -19,7 +19,6 @@ class BlogPostController extends CRUDController
         dump($id);
       dump('ok'); die();
 */
-
         $this->addFlash('sonata_flash_success', 'Test effectué avec succès');
         return new RedirectResponse($this->admin->generateUrl('list'));
 

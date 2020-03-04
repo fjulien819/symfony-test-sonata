@@ -40,11 +40,19 @@ services:
         tags:
             - {  name: sonata.admin ,  manager_type: orm ,  label: Category }
 
-    admin.blog_post :
+    admin.blog_post:
          class: AppBundle\Admin\BlogPostAdmin
          arguments:
              - ~
              - AppBundle\Entity\BlogPost
              - AppBundle\Controller\BlogPostController
          tags:
-             - {  name : sonata.admin ,  manager_type : orm , group: 'Post',  label : 'Blog post'}
+             - {  name: sonata.admin ,  manager_type: orm , group: 'Post',  label: 'Blog post'}
+
+    sonata.block.service.test:
+            class: AppBundle\Block\TestBlockService
+            arguments:
+                - 'sonata.block.service.test'
+                - '@templating'
+            tags:
+                - {  name: sonata.block }

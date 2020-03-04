@@ -9,6 +9,8 @@ parameters:
     locale: fr
 
 framework:
+    templating:
+        engines: ['twig']
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
@@ -78,10 +80,15 @@ sonata_block:
             # enable the SonataAdminBundle block
             sonata.admin.block.admin_list:
                 contexts: [ admin ]
+            sonata.block.service.test: ~
 
 sonata_admin:
     dashboard:
         blocks:
+                -
+                    position : left
+                    type : sonata.block.service.test
+
                 -
                     position : left
                     type : sonata.admin.block.admin_list
